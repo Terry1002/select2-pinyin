@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo</title>
+<link rel="stylesheet" type="text/css" href="select2.css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="select2.js"></script>
+<script type="text/javascript" src="pinyin.js"></script>
+<script type="text/javascript">
+let pinyin = new Pinyin();
+let getPinyin = function(string){
+        //获取首字母
+        return pinyin.getCamelChars(string);
+    }
+//新增String toPinYin方法，用于select2中matcher方法重写
+String.prototype.toPinYin=function () {
+        return pinyin.getCamelChars(this.toString());
+};
+$(function(){
+    //select初始化
+    $('.js-example-basic-single').select2({
+
+        language: "zh-CN"
+
+
+    });      
+});
+
+</script>
+
+</head>
+
+<body>
+<select style="width:100px" class="js-example-basic-single" name="" id="">
+    <option value="">张三</option>
+    <option value="">李四</option>
+    <option value="">王五</option>
+
+</select>
+</body>
+</html>
